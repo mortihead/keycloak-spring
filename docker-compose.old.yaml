@@ -1,0 +1,45 @@
+version: "3.8"
+
+services:
+
+  # База данных
+  postgres:
+    image: postgres:12.9-alpine
+    container_name: postgres
+    restart: always
+    environment:
+      POSTGRES_DB: keycloakdb
+      POSTGRES_PASSWORD: admin
+      POSTGRES_USER: admin
+    ports:
+      - 32767:5432
+    networks:
+      - efi2-network
+
+
+  keycloak:
+    # image: jboss/keycloak
+    # arm64: https://hub.docker.com/r/mihaibob/keycloak
+    image: mihaibob/keycloak:18.0.2-legacy
+    container_name: keycloak
+    platform: linux/arm64
+    environment:
+      DB_VENDOR: POSTGRES
+      DB_ADDR: postgres:5432
+      DB_DATABASE: keycloakdb
+      DB_SCHEMA: keycloak
+      DB_USER: admin
+      DB_PASSWORD: admin
+      #KEYCLOAK_USER: admin
+      #KEYCLOAK_PASSWORD: admin
+    ports:
+      - "8484:8080"
+    depends_on:
+      - postgres
+    networks:
+      - efi2-network
+
+networks:
+  efi2-network:
+    driver: bridge
+    name: efi2-network

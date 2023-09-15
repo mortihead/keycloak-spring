@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:include="layout :: headerFragment">
+</head>
+<body>
+<div class="container">
+    <h1>
+        Hello, <span th:text="${username}">--name--</span>.
+    </h1>
+    <div id="container">
+        <h1>
+            User ID : <span th:text="${userID}">--userID--</span>.
+        </h1>
+        ID token: <span th:text="${IDtoken}">---id token---</span></br> Inspect to <a href="https://jwt.io/">https://jwt.io/</a></br>
+        Roles: <span th:text="${roles}">---id token---</span>
+    </div>
+    <div id="pagefoot" th:include="layout :: footerFragment">Footer
+    </div>
+</div>
+<!-- container -->
+
+</body>
+</html>
