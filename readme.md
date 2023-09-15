@@ -1,7 +1,11 @@
+**Oldschool install and start:**
 1) Download KeyCloak https://www.keycloak.org/downloads (22.0.3)
    Unzip in any folder
 2) Start: ./kc.sh start-dev --http-port=8484
-3) open http://localhost:8080
+3) open http://localhost:8484
+- or -
+**Use docker-compose.yaml** (arm64 image with postgres database)
+docker compose up -d
 ----
 KeyCloak:
 1) Create a Realm "SpringBootKeycloak"
